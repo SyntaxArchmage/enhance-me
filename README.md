@@ -1,23 +1,24 @@
 # /enhance-me — Prompt Enhancer for AI Coding Agents
 
-A set of Cursor skills that automatically enhance your prompts with model-specific best practices before execution.
+A set of Cursor skills that automatically enhance your prompts with model-specific best practices before execution. Uses an action-forcing protocol to guarantee the enhancement pipeline runs correctly every time.
 
 ## What It Does
 
-Type `/enhance-me <your task>` in any Cursor chat. The skill:
+Type `/enhance-me <your task>` in any Cursor chat. The skill enforces a mandatory 3-step protocol:
 
-1. Detects which model you're targeting (Claude by default, or GPT/Codex)
-2. Delegates to a subagent that restructures your prompt using research-backed techniques
-3. Surfaces the enhanced prompt in chat so you can review it
-4. Executes the enhanced prompt
+1. **Launch subagent** — Delegates to a Task subagent with the appropriate model-specific enhancement skill
+2. **Display enhanced prompt** — The full enhanced prompt is shown in a code fence so you can review it
+3. **Execute** — The enhanced prompt is executed as working instructions
+
+The router skill treats skipping any step as a protocol violation, ensuring consistent behavior.
 
 ## Skills
 
 | Skill | Description |
 |-------|-------------|
-| `enhance-me` | Router — detects `/enhance-me` in messages, determines target model, delegates |
-| `enhance-claude` | Claude optimizer — XML structuring, recency-placed instructions, few-shot patterns |
-| `enhance-gpt` | GPT/Codex optimizer — primacy-placed instructions, markdown delimiters, zero-shot-first |
+| `enhance-me` | Action-forcing router — detects `/enhance-me`, routes to the correct model skill, enforces the 3-step protocol |
+| `enhance-claude` | Claude optimizer — XML structuring, recency-placed instructions, few-shot patterns, calm tone, literal completeness |
+| `enhance-gpt` | GPT/Codex optimizer — primacy-placed instructions, markdown delimiters, zero-shot-first, pragmatic values |
 
 ## Usage
 
@@ -27,8 +28,33 @@ Type `/enhance-me <your task>` in any Cursor chat. The skill:
 /enhance-me claude design a caching layer for the API
 ```
 
-- Default target: Claude
-- Add `gpt` to target GPT/Codex models
+### Routing Rules
+
+| Input | Target |
+|-------|--------|
+| `/enhance-me <task>` | Claude (default) |
+| `/enhance-me claude <task>` | Claude |
+| `/enhance-me gpt <task>` | GPT/Codex |
+| `<task> /enhance-me` | Claude (default) |
+| `<task> /enhance-me gpt` | GPT/Codex |
+
+## Key Enhancement Techniques
+
+### Claude (`enhance-claude`)
+- XML tag structure (`<context>`, `<task>`, `<instructions>`, etc.)
+- Critical instructions placed at the END (recency bias)
+- Calm, direct tone (aggressive language hurts Claude 4.x)
+- Role + reason framing
+- Few-shot examples in `<example>` tags
+- Explicit success criteria
+
+### GPT/Codex (`enhance-gpt`)
+- Critical instructions placed at the START (primacy bias)
+- Markdown headers as section delimiters
+- Conversational, direct tone
+- Zero-shot first (add examples only when needed)
+- Codex-specific patterns (testing, validation, no fluff)
+- Pragmatic values (clarity, pragmatism, rigor)
 
 ## Installation
 
