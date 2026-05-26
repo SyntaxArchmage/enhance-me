@@ -12,7 +12,7 @@ export default function Home() {
       transition={{ duration: 0.3 }}
       className="min-h-screen bg-grid relative overflow-hidden"
     >
-      <div className="glow-orb w-[500px] h-[500px] bg-[var(--color-accent)]/25 -top-64 left-1/2 -translate-x-1/2" />
+      <div className="glow-orb w-[500px] h-[500px] bg-[var(--color-accent)]/10 -top-64 left-1/2 -translate-x-1/2" />
       <Nav />
 
       <section className="pt-32 pb-20 px-6 relative z-10">
@@ -25,21 +25,21 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight font-[var(--font-mono)]">
               <span className="text-gradient">/enhance-me</span>
             </h1>
-            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-[var(--color-muted)] mb-10 max-w-2xl mx-auto leading-relaxed">
               Transform vague prompts into structured, model-optimized instructions.
               <br />
               One command. Two targets. Zero effort.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center mb-16">
+            <div className="flex flex-wrap gap-3 justify-center mb-16">
               <Link
                 to="/docs"
-                className="px-6 py-3 rounded-lg bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-blue)] text-white font-medium hover:opacity-90 transition-opacity"
+                className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-blue)] text-white text-sm font-medium hover:opacity-90 transition-opacity shadow-md shadow-[var(--color-accent)]/20"
               >
                 Get Started
               </Link>
               <Link
                 to="/results"
-                className="px-6 py-3 rounded-lg border border-[var(--color-border)] text-gray-300 hover:border-[var(--color-accent-light)] hover:text-white transition-colors"
+                className="px-6 py-2.5 rounded-full border border-[var(--color-border)] text-[var(--color-muted)] text-sm font-medium hover:border-[var(--color-accent)] hover:text-[var(--color-text)] transition-colors"
               >
                 Test Results
               </Link>
@@ -54,13 +54,13 @@ export default function Home() {
           >
             <div className="grid md:grid-cols-2 gap-4 text-left">
               <div>
-                <div className="text-xs uppercase tracking-wider text-red-400 mb-2 font-medium">
+                <div className="text-xs uppercase tracking-wider text-red-500/70 mb-2 font-medium">
                   Before
                 </div>
                 <CodeBlock title="Your prompt">{`/enhance-me fix the auth stuff`}</CodeBlock>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-[var(--color-cyan)] mb-2 font-medium">
+                <div className="text-xs uppercase tracking-wider text-[var(--color-cyan-light)] mb-2 font-medium">
                   After — Claude-optimized
                 </div>
                 <CodeBlock title="Enhanced prompt">{`<context>
@@ -94,7 +94,7 @@ session cookies.
           </div>
           <a
             href="https://github.com/SyntaxArchmage/enhance-me"
-            className="hover:text-white transition-colors mt-2 md:mt-0"
+            className="hover:text-[var(--color-text)] transition-colors mt-2 md:mt-0"
           >
             GitHub
           </a>

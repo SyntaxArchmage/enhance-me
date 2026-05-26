@@ -51,7 +51,7 @@ function ScoreRing({
           <span className="text-xs text-[var(--color-muted)]">/ {maxScore.toFixed(1)}</span>
         </div>
       </div>
-      <span className="mt-3 text-sm font-medium text-gray-300">{label}</span>
+      <span className="mt-3 text-sm font-medium">{label}</span>
     </div>
   )
 }
@@ -71,41 +71,41 @@ export default function Results() {
         </h1>
 
         {/* Score rings */}
-        <div className="grid sm:grid-cols-2 gap-8 max-w-sm mx-auto mb-12">
-          <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-8 flex justify-center">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-sm mx-auto mb-12">
+          <div className="card p-8 flex justify-center">
             <ScoreRing
               score={overallScores.claude}
               maxScore={overallScores.maxScore}
               label="Claude"
-              color="var(--color-accent-light)"
+              color="var(--color-accent)"
             />
           </div>
-          <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-8 flex justify-center">
+          <div className="card p-8 flex justify-center">
             <ScoreRing
               score={overallScores.gpt}
               maxScore={overallScores.maxScore}
               label="GPT / Codex"
-              color="var(--color-blue-light)"
+              color="var(--color-blue)"
             />
           </div>
         </div>
 
         {/* Metric table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl overflow-hidden">
+        <div className="card overflow-hidden">
+          <table className="w-full text-sm">
             <thead className="bg-[var(--color-surface)]">
               <tr>
-                <th className="text-left p-3 text-[var(--color-muted)]">Metric</th>
-                <th className="text-right p-3 text-[var(--color-accent-light)]">Claude</th>
-                <th className="text-right p-3 text-[var(--color-blue-light)]">GPT</th>
+                <th className="text-left p-3 text-[var(--color-muted)] font-medium">Metric</th>
+                <th className="text-right p-3 text-[var(--color-accent)] font-medium">Claude</th>
+                <th className="text-right p-3 text-[var(--color-blue)] font-medium">GPT</th>
               </tr>
             </thead>
-            <tbody className="text-gray-300">
+            <tbody>
               {metricScores.map(({ name, claude, gpt }) => (
                 <tr key={name} className="border-t border-[var(--color-border)]">
                   <td className="p-3">{name}</td>
-                  <td className="p-3 text-right font-[var(--font-mono)]">{claude.toFixed(1)}</td>
-                  <td className="p-3 text-right font-[var(--font-mono)]">{gpt.toFixed(1)}</td>
+                  <td className="p-3 text-right font-[var(--font-mono)] text-[var(--color-muted)]">{claude.toFixed(1)}</td>
+                  <td className="p-3 text-right font-[var(--font-mono)] text-[var(--color-muted)]">{gpt.toFixed(1)}</td>
                 </tr>
               ))}
             </tbody>

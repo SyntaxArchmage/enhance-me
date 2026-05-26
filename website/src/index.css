@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #08080f;
-  --color-surface: #0f0f18;
-  --color-card: #141422;
-  --color-border: #252540;
-  --color-muted: #8b8ba3;
+  --color-bg: #fafafa;
+  --color-surface: #f0f0f5;
+  --color-card: #ffffff;
+  --color-border: #e2e2ea;
+  --color-muted: #6b6b80;
+  --color-text: #1a1a2e;
   --color-accent: #7c3aed;
-  --color-accent-light: #a78bfa;
+  --color-accent-light: #8b5cf6;
   --color-blue: #3b82f6;
   --color-blue-light: #60a5fa;
   --color-cyan: #06b6d4;
-  --color-cyan-light: #22d3ee;
+  --color-cyan-light: #0891b2;
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   background: var(--color-bg);
-  color: #e5e7eb;
+  color: var(--color-text);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent-light), var(--color-blue-light), var(--color-cyan-light));
+  background: linear-gradient(135deg, var(--color-accent), var(--color-blue), var(--color-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -33,32 +35,33 @@ body {
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   pointer-events: none;
 }
 
 .code-block {
-  background: #0a0a12;
-  border: 1px solid var(--color-border);
+  background: #1e1e2e;
+  border: 1px solid #2a2a3e;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .code-block-header {
-  background: #12121e;
+  background: #262636;
   padding: 10px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid #2a2a3e;
 }
 
 .code-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -66,15 +69,18 @@ body {
 .code-dot-yellow { background: #eab308; }
 .code-dot-green { background: #22c55e; }
 
-.score-bar {
-  height: 8px;
-  border-radius: 9999px;
-  background: var(--color-surface);
-  overflow: hidden;
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
-
-.score-bar-fill {
-  height: 100%;
-  border-radius: 9999px;
-  transition: width 0.8s ease-out;
+.card:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.05);
+  border-color: #d0d0de;
 }
