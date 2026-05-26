@@ -48,7 +48,20 @@ export default function Docs() {
         {/* Install */}
         <section className="mb-12">
           <h2 className="text-xl font-bold mb-4">Install</h2>
-          <CodeBlock title="Global install">{`git clone https://github.com/SyntaxArchmage/enhance-me.git
+
+          <div className="card p-5 mb-4">
+            <h3 className="text-sm font-semibold mb-2">Agent Install (recommended)</h3>
+            <p className="text-[var(--color-muted)] text-sm leading-relaxed mb-3">
+              Ask your AI agent to read and execute the install guide. The agent will clone the repo,
+              copy skills to all supported platforms (Cursor, Claude Code, Copilot, Codex, Gemini, Windsurf),
+              verify the installation, and clean up.
+            </p>
+            <CodeBlock title="Just tell your agent">{`Read https://github.com/SyntaxArchmage/enhance-me/blob/main/install.md and follow the installation steps.`}</CodeBlock>
+          </div>
+
+          <div className="card p-5">
+            <h3 className="text-sm font-semibold mb-2">Manual Install</h3>
+            <CodeBlock title="Shell">{`git clone https://github.com/SyntaxArchmage/enhance-me.git
 SRC=enhance-me/.cursor/skills
 
 mkdir -p ~/.cursor/skills/enhance-me \\
@@ -58,6 +71,7 @@ mkdir -p ~/.cursor/skills/enhance-me \\
 cp "$SRC/enhance-me/SKILL.md"     ~/.cursor/skills/enhance-me/
 cp "$SRC/enhance-claude/SKILL.md" ~/.cursor/skills/enhance-claude/
 cp "$SRC/enhance-gpt/SKILL.md"    ~/.cursor/skills/enhance-gpt/`}</CodeBlock>
+          </div>
           <p className="text-[var(--color-muted)] text-sm mt-3">
             Start a new conversation after installing — skills load at conversation start.
           </p>

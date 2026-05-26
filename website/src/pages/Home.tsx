@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import { CodeBlock } from '../components/CodeBlock'
+import { fadeUp } from '../lib/animations'
 
 export default function Home() {
   return (
@@ -15,7 +16,8 @@ export default function Home() {
       <div className="glow-orb w-[500px] h-[500px] bg-[var(--color-accent)]/10 -top-64 left-1/2 -translate-x-1/2" />
       <Nav />
 
-      <section className="pt-32 pb-20 px-6 relative z-10">
+      {/* Hero */}
+      <section className="pt-32 pb-16 px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -46,6 +48,7 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* Before / After */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,6 +87,117 @@ session cookies.
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Why it's better */}
+      <section className="py-16 px-6 border-t border-[var(--color-border)] relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-2xl font-bold text-center mb-10"
+          >
+            <span className="text-gradient">Why enhanced prompts work better</span>
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                title: 'Structured context',
+                desc: 'Vague prompts lack scope. Enhanced prompts define the codebase context, the exact task, and explicit success criteria — so the model knows what to do and when it\'s done.',
+              },
+              {
+                title: 'Actionable steps',
+                desc: 'Instead of "fix it", the enhanced prompt breaks work into numbered steps with clear boundaries. The model can execute sequentially without guessing.',
+              },
+              {
+                title: 'Fewer iterations',
+                desc: 'A well-structured prompt gets it right on the first try. Less back-and-forth, fewer "that\'s not what I meant" corrections, faster results.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={i}
+                className="card p-5"
+              >
+                <h3 className="text-sm font-semibold mb-2">{item.title}</h3>
+                <p className="text-[var(--color-muted)] text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Model-specific adaptation */}
+      <section className="py-16 px-6 border-t border-[var(--color-border)] relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-2xl font-bold text-center mb-3"
+          >
+            <span className="text-gradient">Model-specific adaptation</span>
+          </motion.h2>
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center text-[var(--color-muted)] text-sm mb-10"
+          >
+            Different LLMs respond to different prompt structures. We optimize for each.
+          </motion.p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={0}
+              className="card p-5"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
+                <h3 className="text-sm font-semibold">Claude</h3>
+              </div>
+              <ul className="space-y-1.5 text-[var(--color-muted)] text-sm">
+                <li>XML tags for clear section boundaries</li>
+                <li>Critical instructions placed at the <strong className="text-[var(--color-text)]">end</strong> (recency bias)</li>
+                <li>Calm, direct tone — aggressive phrasing hurts quality</li>
+                <li>Few-shot examples in {'<example>'} tags</li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              custom={1}
+              className="card p-5"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[var(--color-blue)]" />
+                <h3 className="text-sm font-semibold">GPT / Codex</h3>
+              </div>
+              <ul className="space-y-1.5 text-[var(--color-muted)] text-sm">
+                <li>Markdown headers as section delimiters</li>
+                <li>Critical instructions placed at the <strong className="text-[var(--color-text)]">start</strong> (primacy bias)</li>
+                <li>Conversational, direct tone</li>
+                <li>Zero-shot first, examples only when needed</li>
+              </ul>
+            </motion.div>
+          </div>
         </div>
       </section>
 
